@@ -45,12 +45,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def _params_to_ints(self, qs):
         """Convert a list of string IDs to a list of integers"""
-        qs = eval(qs)
-        if isinstance(qs, tuple):
-            ids = [int(str_id) for str_id in qs]
-        else:
-            ids = [qs]
-        return ids
+        return [int(str_id) for str_id in qs.split(',')]
 
     # TODO: Could be useful logic for filtering the BTS flights
     def get_queryset(self):
